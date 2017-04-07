@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"npmlog",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "npmlog",
+    "description": "api documentation for [npmlog (v4.0.2)](https://github.com/npm/npmlog#readme) [![npm package](https://img.shields.io/npm/v/npmdoc-npmlog.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-npmlog) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-npmlog.svg)](https://travis-ci.org/npmdoc/node-npmdoc-npmlog)",
     "devDependencies": {
-        "npmlog": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "npmlog": "*",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
-    "name":"npmdoc-npmlog",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-npmlog",
+    "keywords": [
+        "documentation",
+        "npmlog"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_npmlog.js",
+    "name": "npmdoc-npmlog",
+    "nameAlias": "npmdoc_npmlog",
+    "nameOriginal": "npmdoc-npmlog",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-npmlog"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
     "version": "0.0.1"
 }
