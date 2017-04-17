@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/npm/npmlog#readme"
-
-    >npmlog (v4.0.2)</a>
+    <a href="https://github.com/npm/npmlog#readme">npmlog (v4.0.2)</a>
 </h1>
 <h4>logger for npm</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.npmlog">module npmlog</a><ol>
 
@@ -1555,21 +1548,21 @@
     <li>description and source-code<pre class="apidocCodePre">_format = function (msg, style) {
   if (!stream) return
 
-  var output = &#x27;&#x27;
+  var output = ''
   if (this.useColor()) {
     style = style || {}
     var settings = []
     if (style.fg) settings.push(style.fg)
-    if (style.bg) settings.push(&#x27;bg&#x27; + style.bg[0].toUpperCase() + style.bg.slice(1))
-    if (style.bold) settings.push(&#x27;bold&#x27;)
-    if (style.underline) settings.push(&#x27;underline&#x27;)
-    if (style.inverse) settings.push(&#x27;inverse&#x27;)
+    if (style.bg) settings.push('bg' + style.bg[0].toUpperCase() + style.bg.slice(1))
+    if (style.bold) settings.push('bold')
+    if (style.underline) settings.push('underline')
+    if (style.inverse) settings.push('inverse')
     if (settings.length) output += consoleControl.color(settings)
     if (style.beep) output += consoleControl.beep()
   }
   output += msg
   if (this.useColor()) {
-    output += consoleControl.color(&#x27;reset&#x27;)
+    output += consoleControl.color('reset')
   }
   return output
 }</pre></li>
@@ -1582,13 +1575,13 @@
     values.subsection = last.prefix
     var disp = log.disp[last.level] || last.level
     var logline = this.<span class="apidocCodeKeywordSpan">_format</span>(disp, log.style[last.level])
-    if (last.prefix) logline += &#x27; &#x27; + this._format(last.prefix, this.prefixStyle)
-    logline += &#x27; &#x27; + last.message.split(/\r?\n/)[0]
+    if (last.prefix) logline += ' ' + this._format(last.prefix, this.prefixStyle)
+    logline += ' ' + last.message.split(/\r?\n/)[0]
     values.logline = logline
   }
   values.completed = completed || this.tracker.completed()
   this.gauge.show(values)
-}.bind(log) // bind for use in tracker&#x27;s on-change listener
+}.bind(log) // bind for use in tracker's on-change listener
 ...</pre></li>
     </ul>
 
@@ -1602,7 +1595,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">addLevel = function (lvl, n, style, disp) {
-  // If &#x27;disp&#x27; is null or undefined, use the lvl as a default
+  // If 'disp' is null or undefined, use the lvl as a default
   if (disp == null) disp = lvl
   this.levels[lvl] = n
   this.style[lvl] = style
@@ -1610,7 +1603,7 @@
     this[lvl] = function () {
       var a = new Array(arguments.length + 1)
       a[0] = lvl
-      for (var i = 0; i &#x3c; arguments.length; i++) {
+      for (var i = 0; i &lt; arguments.length; i++) {
         a[i + 1] = arguments[i]
       }
       return this.log.apply(this, a)
@@ -1647,25 +1640,25 @@ Sets up a new level with a shorthand function and so forth.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">clearProgress = function (cb) {
-  if (!this.progressEnabled) return cb &#x26;&#x26; process.nextTick(cb)
+  if (!this.progressEnabled) return cb &amp;&amp; process.nextTick(cb)
   this.gauge.hide(cb)
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 if (l === undefined) return
-if (l &#x3c; this.levels[this.level]) return
-if (l &#x3e; 0 &#x26;&#x26; !isFinite(l)) return
+if (l &lt; this.levels[this.level]) return
+if (l &gt; 0 &amp;&amp; !isFinite(l)) return
 
-// If &#x27;disp&#x27; is null or undefined, use the lvl as a default
-// Allows: &#x27;&#x27;, 0 as valid disp
+// If 'disp' is null or undefined, use the lvl as a default
+// Allows: '', 0 as valid disp
 var disp = log.disp[m.level] != null ? log.disp[m.level] : m.level
 this.<span class="apidocCodeKeywordSpan">clearProgress</span>()
 m.message.split(/\r?\n/).forEach(function (line) {
   if (this.heading) {
     this.write(this.heading, this.headingStyle)
-    this.write(&#x27; &#x27;)
+    this.write(' ')
   }
   this.write(disp, log.style[m.level])
-  var p = m.prefix || &#x27;&#x27;
+  var p = m.prefix || ''
 ...</pre></li>
     </ul>
 
@@ -1712,7 +1705,7 @@ Enable the display of log activity spinner and progress bar
     <li>description and source-code<pre class="apidocCodePre">disableProgress = function () {
   if (!this.progressEnabled) return
   this.progressEnabled = false
-  this.tracker.removeListener(&#x27;change&#x27;, this.showProgress)
+  this.tracker.removeListener('change', this.showProgress)
   this.gauge.disable()
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -1781,23 +1774,23 @@ Set a template for outputting the progress bar. See the [gauge documentation] fo
   if (this.progressEnabled) this.gauge.pulse(m.prefix)
   var l = this.levels[m.level]
   if (l === undefined) return
-  if (l &#x3c; this.levels[this.level]) return
-  if (l &#x3e; 0 &#x26;&#x26; !isFinite(l)) return
+  if (l &lt; this.levels[this.level]) return
+  if (l &gt; 0 &amp;&amp; !isFinite(l)) return
 
-  // If &#x27;disp&#x27; is null or undefined, use the lvl as a default
-  // Allows: &#x27;&#x27;, 0 as valid disp
+  // If 'disp' is null or undefined, use the lvl as a default
+  // Allows: '', 0 as valid disp
   var disp = log.disp[m.level] != null ? log.disp[m.level] : m.level
   this.clearProgress()
   m.message.split(/\r?\n/).forEach(function (line) {
     if (this.heading) {
       this.write(this.heading, this.headingStyle)
-      this.write(&#x27; &#x27;)
+      this.write(' ')
     }
     this.write(disp, log.style[m.level])
-    var p = m.prefix || &#x27;&#x27;
-    if (p) this.write(&#x27; &#x27;)
+    var p = m.prefix || ''
+    if (p) this.write(' ')
     this.write(p, this.prefixStyle)
-    this.write(&#x27; &#x27; + line + &#x27;\n&#x27;)
+    this.write(' ' + line + '\n')
   }, this)
   this.showProgress()
 }</pre></li>
@@ -1864,7 +1857,7 @@ Disable colors on all messages.
     <li>description and source-code<pre class="apidocCodePre">enableProgress = function () {
   if (this.progressEnabled) return
   this.progressEnabled = true
-  this.tracker.on(&#x27;change&#x27;, this.showProgress)
+  this.tracker.on('change', this.showProgress)
   if (this._pause) return
   this.gauge.enable()
 }</pre></li>
@@ -2001,14 +1994,14 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     <ul>
     <li>description and source-code<pre class="apidocCodePre">info = function () { [native code] }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-var log = require(&#x27;npmlog&#x27;)
+var log = require('npmlog')
 
 // additional stuff ---------------------------+
 // message ----------+                         |
 // prefix ----+      |                         |
 // level -+   |      |                         |
 //        v   v      v                         v
-    log.<span class="apidocCodeKeywordSpan">info</span>(&#x27;fyi&#x27;, &#x27;I have a kitty cat: %j&#x27;, myKittyCat)
+    log.<span class="apidocCodeKeywordSpan">info</span>('fyi', 'I have a kitty cat: %j', myKittyCat)
 ```
 
 ## log.level
@@ -2040,7 +2033,7 @@ Emit all buffered messages that were written while paused.
 ## log.<span class="apidocCodeKeywordSpan">log</span>(level, prefix, message, ...)
 
 * `level` {String} The level to emit the message at
-* `prefix` {String} A string prefix.  Set to &#x22;&#x22; to skip.
+* `prefix` {String} A string prefix.  Set to "" to skip.
 * `message...` Arguments to `util.format`
 
 Emit a log message at the specified level.
@@ -2198,7 +2191,7 @@ Emit all buffered messages that were written while paused.
 ## log.log(level, prefix, message, ...)
 
 * `level` {String} The level to emit the message at
-* `prefix` {String} A string prefix.  Set to &#x22;&#x22; to skip.
+* `prefix` {String} A string prefix.  Set to "" to skip.
 ...</pre></li>
     </ul>
 
@@ -2275,10 +2268,10 @@ Stop emitting messages to the stream, but do not drop them.
     <li>example usage<pre class="apidocCodePre">...
   }
   this.write(disp, log.style[m.level])
-  var p = m.prefix || &#x27;&#x27;
-  if (p) this.write(&#x27; &#x27;)
+  var p = m.prefix || ''
+  if (p) this.write(' ')
   this.write(p, this.prefixStyle)
-  this.write(&#x27; &#x27; + line + &#x27;\n&#x27;)
+  this.write(' ' + line + '\n')
 }, this)
 this.<span class="apidocCodeKeywordSpan">showProgress</span>()
 }
@@ -2286,7 +2279,7 @@ this.<span class="apidocCodeKeywordSpan">showProgress</span>()
 log._format = function (msg, style) {
 if (!stream) return
 
-var output = &#x27;&#x27;
+var output = ''
 if (this.useColor()) {
 ...</pre></li>
     </ul>
@@ -2345,7 +2338,7 @@ Like `log.log(level, prefix, message, ...)`.  In this way, each level is
     <li>description and source-code<pre class="apidocCodePre">tracker.bubbleChange = function (name, completed, tracker) {
   trackerGroup.completion[tracker.id] = completed
   if (trackerGroup.finished) return
-  trackerGroup.emit(&#x27;change&#x27;, name || trackerGroup.name, trackerGroup.completed(), trackerGroup)
+  trackerGroup.emit('change', name || trackerGroup.name, trackerGroup.completed(), trackerGroup)
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2366,17 +2359,17 @@ Like `log.log(level, prefix, message, ...)`.  In this way, each level is
 }
 
 // default level
-log.level = &#x27;info&#x27;
+log.level = 'info'
 
 log.gauge = new Gauge(stream, {
 enabled: false, // no progress bars unless asked
 theme: {hasColor: log.<span class="apidocCodeKeywordSpan">useColor</span>()},
 template: [
-  {type: &#x27;progressbar&#x27;, length: 20},
-  {type: &#x27;activityIndicator&#x27;, kerning: 1, length: 1},
-  {type: &#x27;section&#x27;, default: &#x27;&#x27;},
-  &#x27;:&#x27;,
-  {type: &#x27;logline&#x27;, kerning: 1, default: &#x27;&#x27;}
+  {type: 'progressbar', length: 20},
+  {type: 'activityIndicator', kerning: 1, length: 1},
+  {type: 'section', default: ''},
+  ':',
+  {type: 'logline', kerning: 1, default: ''}
 ]
 ...</pre></li>
     </ul>
@@ -2454,20 +2447,20 @@ given a shorthand, so you can do `log.info(prefix, message)`.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-// If &#x27;disp&#x27; is null or undefined, use the lvl as a default
-// Allows: &#x27;&#x27;, 0 as valid disp
+// If 'disp' is null or undefined, use the lvl as a default
+// Allows: '', 0 as valid disp
 var disp = log.disp[m.level] != null ? log.disp[m.level] : m.level
 this.clearProgress()
 m.message.split(/\r?\n/).forEach(function (line) {
   if (this.heading) {
     this.<span class="apidocCodeKeywordSpan">write</span>(this.heading, this.headingStyle)
-    this.write(&#x27; &#x27;)
+    this.write(' ')
   }
   this.write(disp, log.style[m.level])
-  var p = m.prefix || &#x27;&#x27;
-  if (p) this.write(&#x27; &#x27;)
+  var p = m.prefix || ''
+  if (p) this.write(' ')
   this.write(p, this.prefixStyle)
-  this.write(&#x27; &#x27; + line + &#x27;\n&#x27;)
+  this.write(' ' + line + '\n')
 ...</pre></li>
     </ul>
 
@@ -2588,21 +2581,21 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     <li>description and source-code<pre class="apidocCodePre">_format = function (msg, style) {
   if (!stream) return
 
-  var output = &#x27;&#x27;
+  var output = ''
   if (this.useColor()) {
     style = style || {}
     var settings = []
     if (style.fg) settings.push(style.fg)
-    if (style.bg) settings.push(&#x27;bg&#x27; + style.bg[0].toUpperCase() + style.bg.slice(1))
-    if (style.bold) settings.push(&#x27;bold&#x27;)
-    if (style.underline) settings.push(&#x27;underline&#x27;)
-    if (style.inverse) settings.push(&#x27;inverse&#x27;)
+    if (style.bg) settings.push('bg' + style.bg[0].toUpperCase() + style.bg.slice(1))
+    if (style.bold) settings.push('bold')
+    if (style.underline) settings.push('underline')
+    if (style.inverse) settings.push('inverse')
     if (settings.length) output += consoleControl.color(settings)
     if (style.beep) output += consoleControl.beep()
   }
   output += msg
   if (this.useColor()) {
-    output += consoleControl.color(&#x27;reset&#x27;)
+    output += consoleControl.color('reset')
   }
   return output
 }</pre></li>
@@ -2615,13 +2608,13 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     values.subsection = last.prefix
     var disp = log.disp[last.level] || last.level
     var logline = this.<span class="apidocCodeKeywordSpan">_format</span>(disp, log.style[last.level])
-    if (last.prefix) logline += &#x27; &#x27; + this._format(last.prefix, this.prefixStyle)
-    logline += &#x27; &#x27; + last.message.split(/\r?\n/)[0]
+    if (last.prefix) logline += ' ' + this._format(last.prefix, this.prefixStyle)
+    logline += ' ' + last.message.split(/\r?\n/)[0]
     values.logline = logline
   }
   values.completed = completed || this.tracker.completed()
   this.gauge.show(values)
-}.bind(log) // bind for use in tracker&#x27;s on-change listener
+}.bind(log) // bind for use in tracker's on-change listener
 ...</pre></li>
     </ul>
 
@@ -2640,7 +2633,7 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">addLevel = function (lvl, n, style, disp) {
-  // If &#x27;disp&#x27; is null or undefined, use the lvl as a default
+  // If 'disp' is null or undefined, use the lvl as a default
   if (disp == null) disp = lvl
   this.levels[lvl] = n
   this.style[lvl] = style
@@ -2648,7 +2641,7 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     this[lvl] = function () {
       var a = new Array(arguments.length + 1)
       a[0] = lvl
-      for (var i = 0; i &#x3c; arguments.length; i++) {
+      for (var i = 0; i &lt; arguments.length; i++) {
         a[i + 1] = arguments[i]
       }
       return this.log.apply(this, a)
@@ -2690,25 +2683,25 @@ Sets up a new level with a shorthand function and so forth.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">clearProgress = function (cb) {
-  if (!this.progressEnabled) return cb &#x26;&#x26; process.nextTick(cb)
+  if (!this.progressEnabled) return cb &amp;&amp; process.nextTick(cb)
   this.gauge.hide(cb)
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 if (l === undefined) return
-if (l &#x3c; this.levels[this.level]) return
-if (l &#x3e; 0 &#x26;&#x26; !isFinite(l)) return
+if (l &lt; this.levels[this.level]) return
+if (l &gt; 0 &amp;&amp; !isFinite(l)) return
 
-// If &#x27;disp&#x27; is null or undefined, use the lvl as a default
-// Allows: &#x27;&#x27;, 0 as valid disp
+// If 'disp' is null or undefined, use the lvl as a default
+// Allows: '', 0 as valid disp
 var disp = log.disp[m.level] != null ? log.disp[m.level] : m.level
 this.<span class="apidocCodeKeywordSpan">clearProgress</span>()
 m.message.split(/\r?\n/).forEach(function (line) {
   if (this.heading) {
     this.write(this.heading, this.headingStyle)
-    this.write(&#x27; &#x27;)
+    this.write(' ')
   }
   this.write(disp, log.style[m.level])
-  var p = m.prefix || &#x27;&#x27;
+  var p = m.prefix || ''
 ...</pre></li>
     </ul>
 
@@ -2765,7 +2758,7 @@ Enable the display of log activity spinner and progress bar
     <li>description and source-code<pre class="apidocCodePre">disableProgress = function () {
   if (!this.progressEnabled) return
   this.progressEnabled = false
-  this.tracker.removeListener(&#x27;change&#x27;, this.showProgress)
+  this.tracker.removeListener('change', this.showProgress)
   this.gauge.disable()
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -2844,23 +2837,23 @@ Set a template for outputting the progress bar. See the [gauge documentation] fo
   if (this.progressEnabled) this.gauge.pulse(m.prefix)
   var l = this.levels[m.level]
   if (l === undefined) return
-  if (l &#x3c; this.levels[this.level]) return
-  if (l &#x3e; 0 &#x26;&#x26; !isFinite(l)) return
+  if (l &lt; this.levels[this.level]) return
+  if (l &gt; 0 &amp;&amp; !isFinite(l)) return
 
-  // If &#x27;disp&#x27; is null or undefined, use the lvl as a default
-  // Allows: &#x27;&#x27;, 0 as valid disp
+  // If 'disp' is null or undefined, use the lvl as a default
+  // Allows: '', 0 as valid disp
   var disp = log.disp[m.level] != null ? log.disp[m.level] : m.level
   this.clearProgress()
   m.message.split(/\r?\n/).forEach(function (line) {
     if (this.heading) {
       this.write(this.heading, this.headingStyle)
-      this.write(&#x27; &#x27;)
+      this.write(' ')
     }
     this.write(disp, log.style[m.level])
-    var p = m.prefix || &#x27;&#x27;
-    if (p) this.write(&#x27; &#x27;)
+    var p = m.prefix || ''
+    if (p) this.write(' ')
     this.write(p, this.prefixStyle)
-    this.write(&#x27; &#x27; + line + &#x27;\n&#x27;)
+    this.write(' ' + line + '\n')
   }, this)
   this.showProgress()
 }</pre></li>
@@ -2937,7 +2930,7 @@ Disable colors on all messages.
     <li>description and source-code<pre class="apidocCodePre">enableProgress = function () {
   if (this.progressEnabled) return
   this.progressEnabled = true
-  this.tracker.on(&#x27;change&#x27;, this.showProgress)
+  this.tracker.on('change', this.showProgress)
   if (this._pause) return
   this.gauge.enable()
 }</pre></li>
@@ -3152,16 +3145,16 @@ given a shorthand, so you can do `log.info(prefix, message)`.
   var hasColor = !!opts.hasColor
   if (!platform) throw this.newMissingDefaultThemeError(platformName, hasUnicode, hasColor)
   if (!platform[hasUnicode][hasColor]) {
-    if (hasUnicode &#x26;&#x26; hasColor &#x26;&#x26; platform[!hasUnicode][hasColor]) {
+    if (hasUnicode &amp;&amp; hasColor &amp;&amp; platform[!hasUnicode][hasColor]) {
       hasUnicode = false
-    } else if (hasUnicode &#x26;&#x26; hasColor &#x26;&#x26; platform[hasUnicode][!hasColor]) {
+    } else if (hasUnicode &amp;&amp; hasColor &amp;&amp; platform[hasUnicode][!hasColor]) {
       hasColor = false
-    } else if (hasUnicode &#x26;&#x26; hasColor &#x26;&#x26; platform[!hasUnicode][!hasColor]) {
+    } else if (hasUnicode &amp;&amp; hasColor &amp;&amp; platform[!hasUnicode][!hasColor]) {
       hasUnicode = false
       hasColor = false
-    } else if (hasUnicode &#x26;&#x26; !hasColor &#x26;&#x26; platform[!hasUnicode][hasColor]) {
+    } else if (hasUnicode &amp;&amp; !hasColor &amp;&amp; platform[!hasUnicode][hasColor]) {
       hasUnicode = false
-    } else if (!hasUnicode &#x26;&#x26; hasColor &#x26;&#x26; platform[hasUnicode][!hasColor]) {
+    } else if (!hasUnicode &amp;&amp; hasColor &amp;&amp; platform[hasUnicode][!hasColor]) {
       hasColor = false
     } else if (platform === this.defaults.fallback) {
       throw this.newMissingDefaultThemeError(platformName, hasUnicode, hasColor)
@@ -3170,7 +3163,7 @@ given a shorthand, so you can do `log.info(prefix, message)`.
   if (platform[hasUnicode][hasColor]) {
     return this.getTheme(platform[hasUnicode][hasColor])
   } else {
-    return this.getDefault(objectAssign({}, opts, {platform: &#x27;fallback&#x27;}))
+    return this.getDefault(objectAssign({}, opts, {platform: 'fallback'}))
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3218,15 +3211,15 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function newMissingDefaultThemeError(platformName, hasUnicode, hasColor) {
   var err = new Error(
-    &#x27;Could not find a gauge theme for your platform/unicode/color use combo:\n&#x27; +
-    &#x27;    platform = &#x27; + platformName + &#x27;\n&#x27; +
-    &#x27;    hasUnicode = &#x27; + hasUnicode + &#x27;\n&#x27; +
-    &#x27;    hasColor = &#x27; + hasColor)
+    'Could not find a gauge theme for your platform/unicode/color use combo:\n' +
+    '    platform = ' + platformName + '\n' +
+    '    hasUnicode = ' + hasUnicode + '\n' +
+    '    hasColor = ' + hasColor)
   Error.captureStackTrace.call(err, newMissingDefaultThemeError)
   err.platform = platformName
   err.hasUnicode = hasUnicode
   err.hasColor = hasColor
-  err.code = &#x27;EMISSINGTHEME&#x27;
+  err.code = 'EMISSINGTHEME'
   return err
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3242,10 +3235,10 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function newMissingThemeError(name) {
-  var err = new Error(&#x27;Could not find a gauge theme named &#x22;&#x27; + name + &#x27;&#x22;&#x27;)
+  var err = new Error('Could not find a gauge theme named "' + name + '"')
   Error.captureStackTrace.call(err, newMissingThemeError)
   err.theme = name
-  err.code = &#x27;EMISSINGTHEME&#x27;
+  err.code = 'EMISSINGTHEME'
   return err
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3306,7 +3299,7 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     name = opts
     opts = {}
   }
-  var platform = opts.platform == null ? &#x27;fallback&#x27; : opts.platform
+  var platform = opts.platform == null ? 'fallback' : opts.platform
   var hasUnicode = !!opts.hasUnicode
   var hasColor = !!opts.hasColor
   if (!this.defaults[platform]) this.defaults[platform] = {true: {}, false: {}}
@@ -3352,7 +3345,7 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     <li>description and source-code<pre class="apidocCodePre">_write = function (chunk, encoding, callback) {
     process.stdout._writeDefault(chunk, encoding, callback);
     // coverage-hack
-    self.nop(self.socket.readable &#x26;&#x26; (function () {
+    self.nop(self.socket.readable &amp;&amp; (function () {
         self.socket.write(chunk, encoding);
     }()));
 }</pre></li>
@@ -3384,8 +3377,8 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">destroy = function (er) {
-  er = er || new Error(&#x27;process.stdout cannot be closed.&#x27;);
-  stdout.emit(&#x27;error&#x27;, er);
+  er = er || new Error('process.stdout cannot be closed.');
+  stdout.emit('error', er);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3400,8 +3393,8 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">destroySoon = function (er) {
-  er = er || new Error(&#x27;process.stdout cannot be closed.&#x27;);
-  stdout.emit(&#x27;error&#x27;, er);
+  er = er || new Error('process.stdout cannot be closed.');
+  stdout.emit('error', er);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3473,8 +3466,8 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">destroy = function (er) {
-  er = er || new Error(&#x27;process.stderr cannot be closed.&#x27;);
-  stderr.emit(&#x27;error&#x27;, er);
+  er = er || new Error('process.stderr cannot be closed.');
+  stderr.emit('error', er);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3489,8 +3482,8 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">destroySoon = function (er) {
-  er = er || new Error(&#x27;process.stderr cannot be closed.&#x27;);
-  stderr.emit(&#x27;error&#x27;, er);
+  er = er || new Error('process.stderr cannot be closed.');
+  stderr.emit('error', er);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3583,14 +3576,14 @@ given a shorthand, so you can do `log.info(prefix, message)`.
     <ul>
     <li>description and source-code<pre class="apidocCodePre">info = function () { [native code] }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-var log = require(&#x27;npmlog&#x27;)
+var log = require('npmlog')
 
 // additional stuff ---------------------------+
 // message ----------+                         |
 // prefix ----+      |                         |
 // level -+   |      |                         |
 //        v   v      v                         v
-    log.<span class="apidocCodeKeywordSpan">info</span>(&#x27;fyi&#x27;, &#x27;I have a kitty cat: %j&#x27;, myKittyCat)
+    log.<span class="apidocCodeKeywordSpan">info</span>('fyi', 'I have a kitty cat: %j', myKittyCat)
 ```
 
 ## log.level
@@ -3627,7 +3620,7 @@ Emit all buffered messages that were written while paused.
 ## log.<span class="apidocCodeKeywordSpan">log</span>(level, prefix, message, ...)
 
 * `level` {String} The level to emit the message at
-* `prefix` {String} A string prefix.  Set to &#x22;&#x22; to skip.
+* `prefix` {String} A string prefix.  Set to "" to skip.
 * `message...` Arguments to `util.format`
 
 Emit a log message at the specified level.
@@ -3810,7 +3803,7 @@ Emit all buffered messages that were written while paused.
 ## log.log(level, prefix, message, ...)
 
 * `level` {String} The level to emit the message at
-* `prefix` {String} A string prefix.  Set to &#x22;&#x22; to skip.
+* `prefix` {String} A string prefix.  Set to "" to skip.
 ...</pre></li>
     </ul>
 
@@ -3902,10 +3895,10 @@ Stop emitting messages to the stream, but do not drop them.
     <li>example usage<pre class="apidocCodePre">...
   }
   this.write(disp, log.style[m.level])
-  var p = m.prefix || &#x27;&#x27;
-  if (p) this.write(&#x27; &#x27;)
+  var p = m.prefix || ''
+  if (p) this.write(' ')
   this.write(p, this.prefixStyle)
-  this.write(&#x27; &#x27; + line + &#x27;\n&#x27;)
+  this.write(' ' + line + '\n')
 }, this)
 this.<span class="apidocCodeKeywordSpan">showProgress</span>()
 }
@@ -3913,7 +3906,7 @@ this.<span class="apidocCodeKeywordSpan">showProgress</span>()
 log._format = function (msg, style) {
 if (!stream) return
 
-var output = &#x27;&#x27;
+var output = ''
 if (this.useColor()) {
 ...</pre></li>
     </ul>
@@ -3989,7 +3982,7 @@ Like `log.log(level, prefix, message, ...)`.  In this way, each level is
     <li>description and source-code<pre class="apidocCodePre">bubbleChange = function (name, completed, tracker) {
   trackerGroup.completion[tracker.id] = completed
   if (trackerGroup.finished) return
-  trackerGroup.emit(&#x27;change&#x27;, name || trackerGroup.name, trackerGroup.completed(), trackerGroup)
+  trackerGroup.emit('change', name || trackerGroup.name, trackerGroup.completed(), trackerGroup)
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4029,7 +4022,7 @@ Like `log.log(level, prefix, message, ...)`.  In this way, each level is
     <li>description and source-code<pre class="apidocCodePre">bubbleChange = function (name, completed, tracker) {
   trackerGroup.completion[tracker.id] = completed
   if (trackerGroup.finished) return
-  trackerGroup.emit(&#x27;change&#x27;, name || trackerGroup.name, trackerGroup.completed(), trackerGroup)
+  trackerGroup.emit('change', name || trackerGroup.name, trackerGroup.completed(), trackerGroup)
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4055,17 +4048,17 @@ Like `log.log(level, prefix, message, ...)`.  In this way, each level is
 }
 
 // default level
-log.level = &#x27;info&#x27;
+log.level = 'info'
 
 log.gauge = new Gauge(stream, {
 enabled: false, // no progress bars unless asked
 theme: {hasColor: log.<span class="apidocCodeKeywordSpan">useColor</span>()},
 template: [
-  {type: &#x27;progressbar&#x27;, length: 20},
-  {type: &#x27;activityIndicator&#x27;, kerning: 1, length: 1},
-  {type: &#x27;section&#x27;, default: &#x27;&#x27;},
-  &#x27;:&#x27;,
-  {type: &#x27;logline&#x27;, kerning: 1, default: &#x27;&#x27;}
+  {type: 'progressbar', length: 20},
+  {type: 'activityIndicator', kerning: 1, length: 1},
+  {type: 'section', default: ''},
+  ':',
+  {type: 'logline', kerning: 1, default: ''}
 ]
 ...</pre></li>
     </ul>
@@ -4158,20 +4151,20 @@ given a shorthand, so you can do `log.info(prefix, message)`.
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-// If &#x27;disp&#x27; is null or undefined, use the lvl as a default
-// Allows: &#x27;&#x27;, 0 as valid disp
+// If 'disp' is null or undefined, use the lvl as a default
+// Allows: '', 0 as valid disp
 var disp = log.disp[m.level] != null ? log.disp[m.level] : m.level
 this.clearProgress()
 m.message.split(/\r?\n/).forEach(function (line) {
   if (this.heading) {
     this.<span class="apidocCodeKeywordSpan">write</span>(this.heading, this.headingStyle)
-    this.write(&#x27; &#x27;)
+    this.write(' ')
   }
   this.write(disp, log.style[m.level])
-  var p = m.prefix || &#x27;&#x27;
-  if (p) this.write(&#x27; &#x27;)
+  var p = m.prefix || ''
+  if (p) this.write(' ')
   this.write(p, this.prefixStyle)
-  this.write(&#x27; &#x27; + line + &#x27;\n&#x27;)
+  this.write(' ' + line + '\n')
 ...</pre></li>
     </ul>
 
@@ -4184,3 +4177,4 @@ m.message.split(/\r?\n/).forEach(function (line) {
     ]
 </div>
 </div>
+</body></html>
