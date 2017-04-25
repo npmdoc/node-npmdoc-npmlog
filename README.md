@@ -1,4 +1,7 @@
-# api documentation for  [npmlog (v4.0.2)](https://github.com/npm/npmlog#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-npmlog.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-npmlog) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-npmlog.svg)](https://travis-ci.org/npmdoc/node-npmdoc-npmlog)
+# npmdoc-npmlog
+
+#### basic api documentation for  [npmlog (v4.0.2)](https://github.com/npm/npmlog#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-npmlog.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-npmlog) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-npmlog.svg)](https://travis-ci.org/npmdoc/node-npmdoc-npmlog)
+
 #### logger for npm
 
 [![NPM](https://nodei.co/npm/npmlog.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/npmlog)
@@ -71,7 +74,8 @@
     "scripts": {
         "test": "standard && tap test/*.js"
     },
-    "version": "4.0.2"
+    "version": "4.0.2",
+    "bin": {}
 }
 ```
 
